@@ -2,6 +2,7 @@ import { readFormData, H3Event } from "h3";
 import { promises as fs } from "fs";
 import path from "path";
 import sharp from "sharp";
+import crypto from "crypto";
 
 export default defineEventHandler(async (event: H3Event) => {
   const formData = await readFormData(event);
