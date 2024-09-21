@@ -1,0 +1,13 @@
+node_modules/
+.husky/
+.git/
+.env.*
+coverage/
+
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
