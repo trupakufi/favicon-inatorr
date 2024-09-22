@@ -30,16 +30,12 @@ export default defineEventHandler(async (event) => {
     fs.unlink(zipFilePath, (err) => {
       if (err) {
         console.error("Erro ao excluir o arquivo zip:", err);
-      } else {
-        console.log("Arquivo zip excluído com sucesso");
       }
     });
 
     fs.rm(folderPath, { recursive: true, force: true }, (err) => {
       if (err) {
         console.error("Erro ao excluir a pasta zipada:", err);
-      } else {
-        console.log("Pasta zipada excluída com sucesso");
       }
     });
   });

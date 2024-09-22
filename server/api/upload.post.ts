@@ -18,9 +18,11 @@ export default defineEventHandler(async (event: H3Event) => {
   }
 
   if (
-    !["image/png", "image/jpeg", "image/ico", "iamge/gif"].includes(file.type)
+    !["image/png", "image/jpeg", "image/x-icon", "iamge/gif"].includes(
+      file.type,
+    )
   ) {
-    return { error: "Invalid mimytype" };
+    return { error: "File type not supported" };
   }
 
   if (file.size > 5242880) {

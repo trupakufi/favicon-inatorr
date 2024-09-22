@@ -27,6 +27,11 @@ const downloadFiles = async () => {
   if (code.value) {
     try {
       const response = await fetch("/api/download/".concat(code.value));
+
+      if (!response.ok) {
+        alert("Error sending the file");
+      }
+
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -48,7 +53,7 @@ const handleFileUpload = (e) => {
 
 const uploadFile = async () => {
   if (!file.value) {
-    error.value = "Please, select a file";
+    alert("Please, select a file");
     return;
   }
 
@@ -62,12 +67,17 @@ const uploadFile = async () => {
     });
 
     if (!response.ok) {
-      throw new Error("Error sending the file");
+      alert("Error sending the file");
     }
 
     const result = await response.json();
-    code.value = result.code;
-    alert("Favicon Gerados com sucesso.!");
+
+    if (result.code) {
+      alert("Favicon Gerados com sucesso.!");
+      code.value = result.code;
+    } else {
+      alert("Error: " + result.error);
+    }
   } catch (err) {
     console.log(err);
     alert(err.message);
@@ -124,10 +134,11 @@ const copyText = () => {
       </form>
       <button
         type="button"
-        @click="() => downloadFiles()"
+        v-if="code"
+        @click="downloadFiles"
         class="h-16 w-96 cursor-pointer border-2 border-white bg-primary text-xl text-white hover:bg-white hover:text-primary"
       >
-        Download Files
+        Download Zip
       </button>
     </div>
 
