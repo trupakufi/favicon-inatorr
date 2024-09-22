@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 
 export default defineEventHandler(async (event) => {
-  const code = getRouterParam(event, "code");
+  const code = getRouterParam(event, "code")?.toString();
   const folderPath = path.resolve(process.cwd(), `tmp/output/output-${code}`);
   const zipFilePath = path.resolve(process.cwd(), "tmp/zip", "favicon.zip");
 

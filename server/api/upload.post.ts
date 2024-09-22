@@ -34,11 +34,11 @@ export default defineEventHandler(async (event: H3Event) => {
   const uploadDir = path.join(process.cwd(), "/tmp/uploads");
   const filePath = path.join(
     uploadDir,
-    `${file.name.split(".")[0]}-${imageUploadedCode}.${file.type.split("/")[1]}`
+    `${file.name.split(".")[0]}-${imageUploadedCode}.${file.type.split("/")[1]}`,
   );
   const _outputDir = path.join(
     process.cwd(),
-    `/tmp/output/output-${imageUploadedCode}`
+    `/tmp/output/output-${imageUploadedCode}`,
   );
 
   await fs.mkdir(_outputDir, { recursive: true });
